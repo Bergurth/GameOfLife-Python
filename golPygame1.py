@@ -26,7 +26,7 @@ dispHeight = 600
 
 cellSizeX =   dispWidth / BOARDWIDTH 
 cellSizeY =   dispHeight / BOARDHEIGHT
-fps = 30
+fps = 15 
 
 
 def drawCell(coords, color):
@@ -40,12 +40,10 @@ def drawBoardPy(board, boardwidth, boardheight):
 	for x in range(boardwidth):
 		for y in range(boardheight):
 			drawCell([{'x':x, 'y':y}],board[x][y])
-			print board[x][y]
+			
 
 
 def runGame():
-
-	#coords = [{'x':startx, 'y':starty}]
 
 	# setup
 	theBoard = getNewBoard(BOARDWIDTH, BOARDHEIGHT, BK)
@@ -53,22 +51,25 @@ def runGame():
 	smallRandomPop2(theBoard, BOARDWIDTH, BOARDHEIGHT, CELLS[2], DELTA1)
 	smallRandomPop3(theBoard, BOARDWIDTH, BOARDHEIGHT, CELLS[0], DELTA1)
 	smallRandomPop4(theBoard, BOARDWIDTH, BOARDHEIGHT, CELLS[3], DELTA1)
-	drawCell([{'x':3,'y':4}],(255,25,25))
-	pygame.display.update()
-	#drawBoard(theBoard,BOARDWIDTH,BOARDHEIGHT)
+	
+	
 	drawBoardPy(theBoard,BOARDWIDTH,BOARDHEIGHT)
 	pygame.display.update()
 
-	while True:
+	gameLoop = True
+
+	while gameLoop:
 		for event in pygame.event.get():
 			if event.type == QUIT:
+				gameLoop = False
 				pygame.quit()
 				sys.exit()
-			else:
-				fpsTime.tick(fps)
-				theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK, CELLS)
-				drawBoardPy(theBoard,BOARDWIDTH,BOARDHEIGHT)
-				pygame.display.update()
+		
+				
+		fpsTime.tick(fps)
+		theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK, CELLS)
+		drawBoardPy(theBoard,BOARDWIDTH,BOARDHEIGHT)
+		pygame.display.update()
 					
 
 
