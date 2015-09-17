@@ -8,6 +8,7 @@ Core service functions
 import random
 
 
+
 def getNewBoard(boardwidth, boardheight, backgroundChar):
 	# Create a  new 200X60 data structure
 	board = []
@@ -26,8 +27,8 @@ def drawBoard(board, boardwidth, boardheight):
 	for i in range(boardwidth / 10):
 		hline += (' ' * 9) + str(i)
 	
-	print(hline)
-	print('   ' + ('0123456789' * (boardwidth / 10)))
+	#print(hline)
+	#print('   ' + ('0123456789' * (boardwidth / 10)))
 
 	for i in range(boardheight):
 		if i < 10 :
@@ -35,10 +36,10 @@ def drawBoard(board, boardwidth, boardheight):
 		else:
 			extraSpace = ''
 
-		print('%s%s %s %s' % (extraSpace, i, getRow(board,i,boardwidth), i))
+		print('%s' % (getRow(board,i,boardwidth)))
 
-	print('   ' + ('0123456789' * (boardwidth / 10)))
-	print(hline)
+	#print('   ' + ('0123456789' * (boardwidth / 10)))
+	#print(hline)
 
 
 def getRow(board, row, boardwidth):
@@ -55,7 +56,7 @@ def getBoardCopy(board):
 		dupeBoard.append(x)
 	return dupeBoard
 
-def shouldBeNext(board, x, y, cells, backgroundChar):
+def shouldBeNext(board, x, y, char_range, backgroundChar):
 	Neibs = [board[x-1][y-1],board[x][y-1],board[x+1][y-1],board[x-1][y],board[x+1][y],board[x-1][y+1],board[x][y+1],board[x+1][y+1]]
 	if board[x][y] != backgroundChar:
 		cell = board[x][y]
@@ -103,7 +104,7 @@ def shouldBeNext(board, x, y, cells, backgroundChar):
 		if (liveN+EnN > 3):
 			return backgroundChar
 		else:
-			return get_random_unicode(1)
+			return get_random_unicode(1, char_range)
 
 	else:
 		adjCount = 0
@@ -134,7 +135,7 @@ def shouldBeNext(board, x, y, cells, backgroundChar):
 
                 """
 		if (4 > adjCount > 2):
-			return get_random_unicode(1)
+			return get_random_unicode(1, char_range)
 		
 		else:
 			return backgroundChar
@@ -194,7 +195,7 @@ def randomPopWholeBoard(board, boardwidth, boardheight, cell):
 				board[x][y] = cell
 
 
-def get_random_unicode(length):
+def get_random_unicode(length, include_ranges):
 
     try:
         get_char = unichr
@@ -202,6 +203,7 @@ def get_random_unicode(length):
         get_char = chr
 
     # Update this to include code point ranges to be sampled
+    """
     include_ranges = [
         ( 0x0021, 0x0021 ),
         ( 0x0023, 0x0026 ),
@@ -216,7 +218,15 @@ def get_random_unicode(length):
         ( 0x037A, 0x037E ),
         ( 0x0384, 0x038A ),
         ( 0x038C, 0x038C ),
+        ( 0x4E00, 0x9FFF ),
+        ( 0x3400, 0x4DFF ),
+        
     ]
+
+    """
+
+
+
 
     alphabet = [
         get_char(code_point) for current_range in include_ranges

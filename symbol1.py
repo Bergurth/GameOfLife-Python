@@ -38,7 +38,7 @@ print("This is a randomly generated board.")
 # input()
 
 while True:
-	theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK, CELLS)
+	theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK, CHINEASE)
 	os.system(clear)
 	drawBoard(theBoard, BOARDWIDTH, BOARDHEIGHT)
 	time.sleep(0.25)
