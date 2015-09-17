@@ -104,7 +104,8 @@ def shouldBeNext(board, x, y, char_range, backgroundChar):
 		if (liveN+EnN > 3):
 			return backgroundChar
 		else:
-			return get_random_unicode(1, char_range)
+			#return get_random_unicode(1, char_range)
+                        return cell
 
 	else:
 		adjCount = 0
