@@ -25,20 +25,22 @@ from symbolSettings import *
 from symbolService import *
 
 
+BOARDWIDTH = EAST_ASIAN_BOARDWIDTH
+
 
 mswindows = (sys.platform == "win32")
 clear = 'clear' # This is what linux uses to clear cmd screen.
 if mswindows:
 	clear = 'cls'   # This is what windows uses to clear the screen.
 
-theBoard = getNewBoard(BOARDWIDTH, BOARDHEIGHT, BK)
-randomPopWholeBoard(theBoard, BOARDWIDTH, BOARDHEIGHT, CELL)
+theBoard = getNewBoard(BOARDWIDTH, BOARDHEIGHT, BK_HAN)
+randomPopWholeBoard(theBoard, BOARDWIDTH, BOARDHEIGHT, HAN)
 drawBoard(theBoard, BOARDWIDTH, BOARDHEIGHT)
 print("This is a randomly generated board.")
 # input()
 
 while True:
-	theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK, CHINEASE)
+	theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK_HAN, CHINEASE)
 	os.system(clear)
 	drawBoard(theBoard, BOARDWIDTH, BOARDHEIGHT)
 	time.sleep(0.25)

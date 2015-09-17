@@ -1,8 +1,17 @@
 CELL = 'O' # The cell character
 CELL2 = 'Z' 
 BK = ' '   # The background Character
+BK_HAN = '  '
 DED = 'X'  # The dead cell character
 CELLS = ['#','O','Z','S','~'] 
+
+try:
+    get_char = unichr
+except NameError:
+    get_char = chr
+
+
+HAN = get_char(0x4DFF)
 
 """
 BOARDWIDTH = 100
@@ -10,6 +19,8 @@ BOARDHEIGHT = 48
 """
 import console
 (BOARDWIDTH, BOARDHEIGHT) = console.getTerminalSize()
+
+EAST_ASIAN_BOARDWIDTH = BOARDWIDTH / 2
 
 # delta is the width of populations
 DELTA1 = 10
@@ -28,8 +39,6 @@ CHAR_INCLUDE_RANGE = [
         ( 0x037A, 0x037E ),
         ( 0x0384, 0x038A ),
         ( 0x038C, 0x038C ),
-        ( 0x4E00, 0x9FFF ),
-        ( 0x3400, 0x4DFF ),
         
     ]
 
