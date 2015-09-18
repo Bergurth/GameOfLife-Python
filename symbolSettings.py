@@ -11,7 +11,9 @@ except NameError:
     get_char = chr
 
 
-HAN = get_char(0x4DFF)
+#HAN = get_char(0x4DFF)
+HAN = get_char(0x7121)  # nothing
+
 
 """
 BOARDWIDTH = 100
