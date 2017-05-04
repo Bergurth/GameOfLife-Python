@@ -12,7 +12,9 @@ except NameError:
 
 
 #HAN = get_char(0x4DFF)
-HAN = get_char(0x7121)  # nothing
+HAN = get_char(0x7121)  # nothing chinease
+#HAN = get_char(0x3080)  # nothin japanease
+
 
 
 """
@@ -48,3 +50,28 @@ CHINEASE = [
         ( 0x4E00, 0x9FFF ),
 #        ( 0x3400, 0x4DFF ),
     ]
+
+# 3040-309f and 30a0-30ff
+JAPANEASE = [
+    #(0x4e00,0x9fbf),
+    #(0x3400,0x4DFF),
+    #(0x30a0,0x30ff),
+    (0x30a0, 0x30ff),
+]
+
+KOREAN = [
+    (0xAC00,0xD7AF),
+    (0x1100,0x11FF),
+]
+
+LANGUAGES = {"chinease":CHINEASE, "japanease":JAPANEASE, "korean":KOREAN}
+"""
+
+    Japanese-style punctuation ( 3000 - 303f)
+    Hiragana ( 3040 - 309f)  <----- pretty japanease looking
+    Katakana ( 30a0 - 30ff)  <----- even more japanease looking
+    Full-width roman characters and half-width katakana ( ff00 - ffef)
+    CJK unifed ideographs - Common and uncommon kanji ( 4e00 - 9faf)
+    
+
+"""

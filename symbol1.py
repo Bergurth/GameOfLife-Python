@@ -33,6 +33,15 @@ clear = 'clear' # This is what linux uses to clear cmd screen.
 if mswindows:
 	clear = 'cls'   # This is what windows uses to clear the screen.
 
+print("please choose a language for character set.")
+keys = []
+for it, key in enumerate(LANGUAGES):
+	print(str(it) + " " + key)
+	keys.append(key)
+
+choice = raw_input()
+
+CHARSET = LANGUAGES[keys[int(choice)]]
 theBoard = getNewBoard(BOARDWIDTH, BOARDHEIGHT, BK_HAN)
 randomPopWholeBoard(theBoard, BOARDWIDTH, BOARDHEIGHT, HAN)
 drawBoard(theBoard, BOARDWIDTH, BOARDHEIGHT)
@@ -40,7 +49,8 @@ print("This is a randomly generated board.")
 # input()
 
 while True:
-	theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK_HAN, CHINEASE)
+	#theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK_HAN, CHINEASE)
+	theBoard = iterate(theBoard, BOARDWIDTH, BOARDHEIGHT, BK_HAN, CHARSET)
 	os.system(clear)
 	drawBoard(theBoard, BOARDWIDTH, BOARDHEIGHT)
 	time.sleep(0.25)
